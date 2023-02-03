@@ -7,6 +7,10 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Packaging
+local packer_compile_path = vim.fn.resolve(vim.fn.stdpath("data") .. "/site/packer_compiled.lua")
+
+vim.cmd("source " .. packer_compile_path)
+
 require("packer").startup({
   function(use)
     use("wbthomason/packer.nvim")
@@ -52,9 +56,25 @@ require("packer").startup({
       requires = "nvim-tree/nvim-web-devicons",
       tag = "nightly",
     })
+    use({
+      "glepnir/dashboard-nvim",
+      event = "VimEnter",
+      requires = "nvim-tree/nvim-web-devicons",
+      config = function()
+        require("dashboard").setup()
+      end,
+    })
+    use({
+      "utilyre/barbecue.nvim",
+      tag = "*",
+      requires = {
+        "SmiteshP/nvim-navic",
+        "nvim-tree/nvim-web-devicons", -- optional dependency
+      },
+    })
   end,
   config = {
-    compile_path = vim.fn.resolve(vim.fn.stdpath("data") .. "/site/packer_compiled.lua"),
+    compile_path = packer_compile_path,
     display = {
       open_fn = function()
         return require("packer.util").float({ border = "single" })
@@ -67,7 +87,6 @@ require("mason").setup()
 require("mason-lspconfig").setup({
   automatic_installation = true,
 })
-
 require("Comment").setup()
 require("gitsigns").setup()
 require("nvim-autopairs").setup()
@@ -293,4 +312,9 @@ null_ls.setup({
 require("indent_blankline").setup({
   show_current_context = true,
   show_current_context_start = true,
+})
+
+-- Barbecue
+require("barbecue").setup({
+  theme = "tokyonight",
 })

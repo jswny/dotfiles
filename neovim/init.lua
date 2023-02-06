@@ -69,8 +69,16 @@ require("packer").startup({
       tag = "*",
       requires = {
         "SmiteshP/nvim-navic",
-        "nvim-tree/nvim-web-devicons", -- optional dependency
+        "nvim-tree/nvim-web-devicons",
       },
+    })
+    use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" })
+    use({
+      "ggandor/leap.nvim",
+      requires = "tpope/vim-repeat",
+      config = function()
+        require("leap").add_default_mappings()
+      end,
     })
   end,
   config = {
@@ -91,6 +99,7 @@ require("Comment").setup()
 require("gitsigns").setup()
 require("nvim-autopairs").setup()
 require("nvim-tree").setup()
+require("bufferline").setup({})
 
 -- Treesitter
 require("nvim-treesitter.configs").setup({

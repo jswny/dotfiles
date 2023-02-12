@@ -11,6 +11,15 @@ vim.g.mapleader = "\\"
 -- LSP
 local lsp_formatting_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+local lsp_formatting = function(bufnr)
+  vim.lsp.buf.format({
+    filter = function(client)
+      return client.name == "null-ls"
+    end,
+    bufnr = bufnr,
+  })
+end
+
 local on_attach = function(client, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
@@ -37,7 +46,7 @@ local on_attach = function(client, bufnr)
       group = lsp_formatting_augroup,
       buffer = bufnr,
       callback = function()
-        vim.lsp.buf.format({ bufnr = bufnr })
+        lsp_formatting(bufnr)
       end,
     })
   end
@@ -287,17 +296,16 @@ local plugins = {
   {
     "jose-elias-alvarez/null-ls.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
+    opts = function()
       local null_ls = require("null-ls")
 
-      opts = {
+      return {
         on_attach = on_attach,
         sources = {
           null_ls.builtins.completion.spell,
           null_ls.builtins.formatting.stylua,
         },
       }
-      null_ls.setup(opts)
     end,
   },
   {
@@ -307,7 +315,12 @@ local plugins = {
       show_current_context_start = true,
     },
   },
-  "numToStr/Comment.nvim",
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  },
   "lewis6991/gitsigns.nvim",
   "windwp/nvim-autopairs",
   {

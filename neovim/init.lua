@@ -9,17 +9,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = "\\"
 
 -- LSP
-local lsp_formatting_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-local lsp_formatting = function(bufnr)
-  vim.lsp.buf.format({
-    filter = function(client)
-      return client.name == "null-ls"
-    end,
-    bufnr = bufnr,
-  })
-end
-
 local on_attach = function(client, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
@@ -37,18 +26,11 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
   vim.keymap.set("n", "<space>f", function()
-    vim.lsp.buf.format({ async = true })
+    vim.cmd([[Format]])
   end, bufopts)
 
   if client.supports_method("textDocument/formatting") then
-    vim.api.nvim_clear_autocmds({ group = lsp_formatting_augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = lsp_formatting_augroup,
-      buffer = bufnr,
-      callback = function()
-        lsp_formatting(bufnr)
-      end,
-    })
+    require("lsp-format").on_attach(client)
   end
 end
 
@@ -109,7 +91,7 @@ local plugins = {
       local lspconfig = require("lspconfig")
       local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      local lsp_servers = { "elixirls", "sumneko_lua" }
+      local lsp_servers = { "elixirls", "lua_ls" }
       for _, lsp in ipairs(lsp_servers) do
         lspconfig[lsp].setup({
           on_attach = on_attach,
@@ -117,7 +99,7 @@ local plugins = {
         })
       end
 
-      lspconfig["sumneko_lua"].setup({
+      lspconfig["lua_ls"].setup({
         settings = {
           Lua = {
             diagnostics = {
@@ -135,6 +117,8 @@ local plugins = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
     },
     config = function()
       local cmp = require("cmp")
@@ -219,8 +203,6 @@ local plugins = {
       })
     end,
   },
-  "L3MON4D3/LuaSnip",
-  "saadparwaiz1/cmp_luasnip",
   {
     "nvim-telescope/telescope.nvim",
     version = "0.1.1",
@@ -322,7 +304,12 @@ local plugins = {
     end,
   },
   "lewis6991/gitsigns.nvim",
-  "windwp/nvim-autopairs",
+  {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup()
+    end,
+  },
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -355,6 +342,16 @@ local plugins = {
     config = function()
       require("leap").add_default_mappings()
     end,
+  },
+  {
+    "lukas-reineke/lsp-format.nvim",
+    opts = {
+      exclude = { "lua_ls" },
+    },
+  },
+  {
+    "dstein64/vim-startuptime",
+    cmd = "StartupTime",
   },
 }
 

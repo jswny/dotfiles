@@ -303,7 +303,13 @@ local plugins = {
       require("Comment").setup()
     end,
   },
-  "lewis6991/gitsigns.nvim",
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("gitsigns").setup()
+    end,
+  },
   {
     "windwp/nvim-autopairs",
     config = function()

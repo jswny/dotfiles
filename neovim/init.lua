@@ -293,6 +293,11 @@ local plugins = {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
+    config = {
+      scope = {
+        highlight = { "SpecialKey", "SpecialKey", "SpecialKey" },
+      },
+    },
   },
   {
     "numToStr/Comment.nvim",

@@ -298,6 +298,11 @@ local plugins = {
       scope = {
         highlight = { "SpecialKey", "SpecialKey", "SpecialKey" },
       },
+      exclude = {
+        filetypes = {
+          "dashboard",
+        },
+      },
     },
   },
   {

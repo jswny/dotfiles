@@ -320,11 +320,6 @@ local plugins = {
     end,
   },
   {
-    "nvim-tree/nvim-tree.lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    version = "nightly",
-  },
-  {
     "glepnir/dashboard-nvim",
     event = "VimEnter",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -361,6 +356,11 @@ local plugins = {
   {
     "dstein64/vim-startuptime",
     cmd = "StartupTime",
+  },
+  {
+    "stevearc/oil.nvim",
+    opts = {},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 }
 

@@ -9,7 +9,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = "\\"
 
 -- LSP
-local on_attach = function(client, bufnr)
+local lsp_default_on_attach = function(client, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -94,7 +94,7 @@ local plugins = {
       local lsp_servers = { "elixirls", "lua_ls" }
       for _, lsp in ipairs(lsp_servers) do
         lspconfig[lsp].setup({
-          on_attach = on_attach,
+          on_attach = lsp_default_on_attach,
           capabilities = cmp_capabilities,
         })
       end
@@ -282,7 +282,7 @@ local plugins = {
       local null_ls = require("null-ls")
 
       return {
-        on_attach = on_attach,
+        on_attach = lsp_default_on_attach,
         sources = {
           null_ls.builtins.completion.spell,
           null_ls.builtins.formatting.stylua,

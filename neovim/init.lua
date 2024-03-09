@@ -223,6 +223,9 @@ local plugins = {
     config = function()
       require("telescope").load_extension("fzf")
     end,
+    event = {
+      "VimEnter",
+    },
   },
   {
     "folke/tokyonight.nvim",

@@ -61,6 +61,8 @@ end
 # Configure Git to use Delta
 git config --global core.pager "delta --dark"
 
+fish_add_path "/Users/joe/.mix/escripts"
+
 #################
 # Abbreviations #
 #################

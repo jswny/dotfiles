@@ -12,6 +12,10 @@ alias gca "git add . && git commit --amend --no-edit && git push -f"
 
 if status is-interactive
     set -gx EDITOR "zed --wait"
+
+    function rg
+        command rg --json -C 2 $argv | delta
+    end
 end
 
 set -U fish_user_paths $fish_user_paths ~/.orbstack/bin

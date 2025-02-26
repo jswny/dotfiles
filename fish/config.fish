@@ -5,11 +5,10 @@ alias cat "bat"
 
 alias gs "git status"
 alias gl "git log"
+alias gd "git diff"
 alias gp "git pull"
 alias gpp "git push"
 alias gca "git add . && git commit --amend --no-edit && git push -f"
-
-git config --global diff.external difft
 
 if status is-interactive
     set -gx EDITOR "zed --wait"

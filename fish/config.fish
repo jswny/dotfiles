@@ -20,3 +20,5 @@ end
 
 set -U fish_user_paths $fish_user_paths ~/.orbstack/bin
 set -U fish_user_paths $fish_user_paths ~/.cargo/bin
+
+set -g BAT_THEME base16

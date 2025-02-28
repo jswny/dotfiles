@@ -21,4 +21,5 @@ end
 set -U fish_user_paths $fish_user_paths ~/.orbstack/bin
 set -U fish_user_paths $fish_user_paths ~/.cargo/bin
 
-set -g BAT_THEME base16
+set -gx BAT_THEME "ansi"
+set -gx FZF_DEFAULT_OPTS "--color=16"

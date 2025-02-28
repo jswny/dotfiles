@@ -18,8 +18,9 @@ if status is-interactive
     end
 end
 
-set -U fish_user_paths $fish_user_paths ~/.orbstack/bin
-set -U fish_user_paths $fish_user_paths ~/.cargo/bin
+fish_add_path ~/.orbstack/bin
+fish_add_path ~/.cargo/bin
+fish_add_path ~/.bun/bin
 
 set -gx BAT_THEME "ansi"
 set -gx FZF_DEFAULT_OPTS "--color=16"

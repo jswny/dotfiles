@@ -24,3 +24,7 @@ fish_add_path ~/.bun/bin
 
 set -gx BAT_THEME "ansi"
 set -gx FZF_DEFAULT_OPTS "--color=16"
+
+function claude
+    env SHELL=/bin/zsh claude $argv
+end

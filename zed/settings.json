@@ -11,10 +11,10 @@
   "features": {
     "edit_prediction_provider": "zed"
   },
-  "assistant": {
+  "agent": {
     "default_model": {
-      "provider": "anthropic",
-      "model": "claude-3-7-sonnet-latest"
+      "provider": "openai",
+      "model": "gpt-4.1"
     },
     "version": "2"
   },

@@ -43,4 +43,4 @@
 # resize-overlay-duration = 4s 200ms
 
 font-family = Berkeley Mono
-theme = dark:base16-default-dark,light:base16-default-light
+keybind = shift+enter=text:\x1b\r

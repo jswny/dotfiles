@@ -29,9 +29,6 @@ if status is-interactive
     atuin init fish | source
 end
 
-set -gx BAT_THEME ansi
-set -gx FZF_DEFAULT_OPTS "--color=16"
-
 source ~/.config/fish/local.config.fish
 
 function claude

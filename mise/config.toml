@@ -1,3 +1,6 @@
 [tools]
+erlang = "latest"
 node = "latest"
+"npm:@openai/codex" = "latest"
 python = "latest"
+elixir = "latest"

@@ -10,16 +10,18 @@ alias gd "git diff"
 alias gp "git pull"
 alias gaa "git add ."
 alias gpp "git push"
-alias gca "git add . && git commit --amend --no-edit && git push -f"
+alias gca "git add . && git commit --amend --no-edit"
+alias gcaf "git add . && git commit --amend --no-edit && git push -f"
 
 mise activate fish | source
-source ~/.atuin/bin/env.fish
 
 fish_add_path ~/.orbstack/bin
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.bun/bin
 
 if status is-interactive
+    source ~/.atuin/bin/env.fish
+
     set -gx EDITOR "zed --wait"
 
     function rg

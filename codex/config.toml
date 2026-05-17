@@ -1,0 +1,86 @@
+model = "gpt-5.5"
+model_reasoning_effort = "xhigh"
+
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+personality = "pragmatic"
+plan_mode_reasoning_effort = "high"
+
+[features]
+view_image_tool = true
+unified_exec = true
+shell_snapshot = true
+js_repl = true
+multi_agent = true
+prevent_idle_sleep = true
+memories = true
+
+[shell_environment_policy]
+ignore_default_excludes = true
+
+[sandbox_workspace_write]
+network_access = true
+writable_roots = [
+  "/Users/joe/Library/Preferences/.wrangler",
+  "/Users/joe/.cache",
+  "/Users/joe/.local",
+  "/Users/joe/.npm"
+]
+
+[projects."/Users/joe/source/sturm"]
+trust_level = "trusted"
+
+[projects."/Users/joe/source/arbitraze"]
+trust_level = "trusted"
+
+[projects."/Users/joe/source/dotfiles"]
+trust_level = "trusted"
+
+[notice]
+"hide_gpt-5.1-codex-max_migration_prompt" = true
+
+[notice.model_migrations]
+"gpt-5.1-codex-max" = "gpt-5.2-codex"
+"gpt-5.2-codex" = "gpt-5.3-codex"
+"gpt-5.3-codex" = "gpt-5.4"
+
+[marketplaces.openai-bundled]
+last_updated = "2026-05-14T20:47:07Z"
+source_type = "local"
+source = "/Users/joe/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-05-14T03:15:55Z"
+source_type = "local"
+source = "/Users/joe/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[plugins."google-calendar@openai-curated"]
+enabled = true
+
+[plugins."gmail@openai-curated"]
+enabled = true
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[plugins."google-drive@openai-curated"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[tui.model_availability_nux]
+"gpt-5.5" = 2
+
+[memories]
+generate_memories = true
+use_memories = true

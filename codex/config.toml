@@ -1,7 +1,7 @@
 model = "gpt-5.5"
 model_reasoning_effort = "xhigh"
 
-sandbox_mode = "workspace-write"
+default_permissions = "workspace-write-custom"
 approval_policy = "on-request"
 personality = "pragmatic"
 plan_mode_reasoning_effort = "high"
@@ -21,6 +21,19 @@ js_repl = false
 [shell_environment_policy]
 ignore_default_excludes = true
 
+[permissions.workspace-write-custom]
+description = "Workspace writes plus selected cache and tool directories."
+extends = ":workspace"
+
+[permissions.workspace-write-custom.workspace_roots]
+"/Users/joe/.cache" = true
+"/Users/joe/.local" = true
+"/Users/joe/.npm" = true
+"/Users/joe/Library/Preferences/.wrangler" = true
+
+[permissions.workspace-write-custom.network]
+enabled = true
+
 [projects."/Users/joe/source/sturm"]
 trust_level = "trusted"
 
@@ -28,6 +41,33 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/Users/joe/source/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/joe/Documents/Codex/2026-06-07/do-you-have-access-to-the"]
+trust_level = "trusted"
+
+[projects."/Users/joe/Documents/Codex/2026-06-07/cloudflare-plugin-cloudflare-openai-curated-do"]
+trust_level = "trusted"
+
+[projects."/Users/joe/Documents/Codex/2026-06-07/do-you-have-cloudflare-mcp-access"]
+trust_level = "trusted"
+
+[projects."/Users/joe/source/website"]
+trust_level = "trusted"
+
+[projects."/Users/joe/Documents/Codex/2026-06-08/do-you-have-cloudflare-mcp-access"]
+trust_level = "trusted"
+
+[projects."/Users/joe/Documents/Codex/2026-06-11/do-you-have-the-cloudflare-mcp"]
+trust_level = "trusted"
+
+[projects."/Users/joe/Documents/Codex/2026-07-04/h"]
+trust_level = "trusted"
+
+[projects."/Users/joe/Documents/Codex/2026-07-10/do-you-have-the-cloudflare-skills"]
+trust_level = "trusted"
+
+[projects."/Users/joe/source/concierge"]
 trust_level = "trusted"
 
 [notice]
@@ -39,12 +79,12 @@ trust_level = "trusted"
 "gpt-5.3-codex" = "gpt-5.4"
 
 [marketplaces.openai-bundled]
-last_updated = "2026-06-02T23:06:21Z"
+last_updated = "2026-07-08T15:57:24Z"
 source_type = "local"
 source = "/Users/joe/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-06-01T18:49:48Z"
+last_updated = "2026-07-01T06:50:08Z"
 source_type = "local"
 source = "/Users/joe/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
@@ -69,7 +109,19 @@ enabled = true
 [plugins."presentations@openai-primary-runtime"]
 enabled = true
 
+[plugins."cloudflare@openai-curated"]
+enabled = true
+
+[plugins."linear@openai-curated"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
 [plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
 enabled = true
 
 [tui.model_availability_nux]
@@ -97,23 +149,54 @@ global = "zed"
 [desktop.open-in-target-preferences.perPath]
 "/Users/joe/source/sturm" = "zed"
 
+[desktop.appearanceLightChromeTheme]
+accent = "#339cff"
+contrast = 45
+ink = "#1a1c1f"
+opaqueWindows = false
+surface = "#ffffff"
+
+[desktop.appearanceLightChromeTheme.fonts]
+code = "Berkeley Mono"
+
+[desktop.appearanceLightChromeTheme.semanticColors]
+diffAdded = "#00a240"
+diffRemoved = "#ba2623"
+skill = "#924ff7"
+
+[desktop.appearanceDarkChromeTheme]
+accent = "#339cff"
+contrast = 60
+ink = "#ffffff"
+opaqueWindows = false
+surface = "#181818"
+
+[desktop.appearanceDarkChromeTheme.fonts]
+code = "Berkeley Mono"
+
+[desktop.appearanceDarkChromeTheme.semanticColors]
+diffAdded = "#40c977"
+diffRemoved = "#fa423e"
+skill = "#ad7bf9"
+
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"
 
 [mcp_servers.node_repl]
 args = []
-command = "/Applications/Codex.app/Contents/Resources/node_repl"
+command = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node_repl"
 startup_timeout_sec = 120
 
 [mcp_servers.node_repl.env]
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
-NODE_REPL_NODE_MODULE_DIRS = ""
-NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/node"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/joe/.codex"
 CODEX_HOME = "/Users/joe/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "4b6bfaf4ed2ce9b5cd68e60a61642eb4927a36306ba8c8993f6058607b3530fb"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "97669f77b3ca7114a2df05d55646416ea34b28100c07213ef9f643803449ef2f"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.623.141536"
 CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"

@@ -1,0 +1,1 @@
+-- Use Rex's built-in defaults without overrides.

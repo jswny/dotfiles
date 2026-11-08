@@ -1,21 +1,20 @@
 model = "gpt-6.1-sol"
 model_reasoning_effort = "high"
+default_permissions = "workspace-write-custom"
 approval_policy = "on-request"
 personality = "pragmatic"
 plan_mode_reasoning_effort = "high"
-approvals_reviewer = "guardian_subagent"
+approvals_reviewer = "auto_review"
 
 notify = ["/Users/joe/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
-sandbox_mode = "workspace-write"
 
 [features]
-view_image_tool = true
+view_image = true
 unified_exec = true
 shell_snapshot = true
 multi_agent = true
 prevent_idle_sleep = true
 memories = true
-js_repl = false
 
 [shell_environment_policy]
 ignore_default_excludes = true
@@ -257,8 +256,8 @@ NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.1103.32239"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/joe/.codex/plugins/cache/openai-bundled/browser/26.1103.32239/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+BROWSER_USE_CODEX_APP_VERSION = "26.1103.41825"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/joe/.codex/plugins/cache/openai-bundled/browser/26.1103.41825/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
 SKY_CUA_SERVICE_PATH = "/Users/joe/.codex/computer-use/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
 

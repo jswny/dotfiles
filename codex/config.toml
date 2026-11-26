@@ -15,6 +15,7 @@ shell_snapshot = true
 multi_agent = true
 prevent_idle_sleep = true
 memories = true
+chronicle = true
 
 [shell_environment_policy]
 ignore_default_excludes = true
@@ -27,6 +28,7 @@ description = "Workspace writes plus selected cache and tool directories."
 extends = ":workspace"
 
 [permissions.workspace-write-custom.workspace_roots]
+"/Users/joe/Library/Caches/mise" = true
 "/Users/joe/.cache" = true
 "/Users/joe/.local" = true
 "/Users/joe/.npm" = true
@@ -104,6 +106,9 @@ trust_level = "trusted"
 [projects."/Users/joe/.config/rex"]
 trust_level = "trusted"
 
+[projects."/Users/joe/source/trajan"]
+trust_level = "trusted"
+
 [notice]
 "hide_gpt-5.1-codex-max_migration_prompt" = true
 
@@ -169,6 +174,9 @@ enabled = true
 enabled = true
 
 [plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[plugins."computer-history@openai-bundled"]
 enabled = true
 
 [tui]
@@ -241,7 +249,7 @@ url = "https://developers.openai.com/mcp"
 [mcp_servers.node_repl]
 args = []
 command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
-env_vars = ["BROWSER_USE_ACCESS_EXECUTOR_ID", "BROWSER_USE_ACCESS_PIPE_PATH", "BROWSER_USE_ACCESS_VERIFYING_IDENTITY"]
+env_vars = ["BROWSER_USE_ACCESS_EXECUTOR_ID", "BROWSER_USE_ACCESS_PIPE_PATH", "BROWSER_USE_ACCESS_VERIFYING_IDENTITY", "CODEX_APP_RUNTIME_CLI_PATH"]
 startup_timeout_sec = 120
 
 [mcp_servers.node_repl.env]
@@ -256,10 +264,11 @@ NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.1103.41825"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/joe/.codex/plugins/cache/openai-bundled/browser/26.1103.41825/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+BROWSER_USE_CODEX_APP_VERSION = "26.1120.41243"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/joe/.codex/plugins/cache/openai-bundled/browser/26.1120.41243/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
 SKY_CUA_SERVICE_PATH = "/Users/joe/.codex/computer-use/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
+NODE_REPL_LAZY_TRUSTED_WORKER = "0"
 
 [mcp_servers.computer-use]
 command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"

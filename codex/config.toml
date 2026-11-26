@@ -12,10 +12,12 @@ notify = ["/Users/joe/.codex/computer-use/Codex Computer Use.app/Contents/Shared
 view_image = true
 unified_exec = true
 shell_snapshot = true
-multi_agent = true
 prevent_idle_sleep = true
 memories = true
 chronicle = true
+
+[agents]
+enabled = true
 
 [shell_environment_policy]
 ignore_default_excludes = true
